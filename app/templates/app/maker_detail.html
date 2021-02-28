@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'app/css/style_index.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% if items %}
+    <div class="item_maker">
+        <div class="maker_card"><a href="{% url 'app:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
+        <div class="item_card">
+            {% for item in items %}
+            <div class="item"><a href="{% url 'app:detail' item.slug %}">{{ item.item_name }}</a></div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock %}

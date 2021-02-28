@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel='stylesheet' href="{% static 'app/css/style_base.css' %}">
+    <link rel='stylesheet' href="{% static 'app/css/style_index.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo_header">WaNTo</div>
+            <div class="maker_header">メーカー</div>
+            <div class="tag_header">タグ</div>
+            <form class="form_header" action="">
+                <div class="wrap_input">
+                    <input type="search">
+                </div>
+            </form>
+
+        </div>
+    </header>
+    <main>
+        <div class="item_maker">
+            <div class="maker_card">メーカー1</div>
+            <!-- <div class="item_card">
+                <div>アイテム1</div>
+                <div>アイテム2</div>
+                <div>アイテム3</div>
+                <div>アイテム4</div>
+            </div> -->
+        </div>
+        <div class="item_maker">
+            <div class="maker_card">メーカー2</div>
+            <!-- <div class="item_card">
+                <div>アイテム5</div>
+                <div>アイテム6</div>
+                <div>アイテム7</div>
+                <div>アイテム8</div>
+                <div>アイテム9</div>
+            </div> -->
+        </div>
+    </main>
+</body>
+
+</html>
