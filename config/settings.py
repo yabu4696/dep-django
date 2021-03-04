@@ -18,8 +18,9 @@ SECRET_KEY = env.get_value('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get_value('DEBUG')
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wanto-item.com']
 
 
 # Application definition

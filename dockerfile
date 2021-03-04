@@ -1,5 +1,4 @@
-FROM ubuntu:latest
-
+FROM ubuntu:20.04
 SHELL ["/bin/bash", "-c"]
 
 # pythonをインストール
@@ -57,11 +56,11 @@ RUN pipenv install --system --skip-lock \
     && pip uninstall -y pipenv virtualenv-clone virtualenv
 
 
-
 # シェルスクリプトをコピー
-COPY ./entrypoint.prod.sh /workspace/entrypoint.prod.sh
+COPY ./entrypoint.sh /workspace/entrypoint.sh
 
 COPY . /workspace/
 
 # シェルスクリプトを実行
-ENTRYPOINT ["/workspace/entrypoint.prod.sh"]
+ENTRYPOINT ["/workspace/entrypoint.sh"]
+
