@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source /workspace/.env 
-
 if [ "$DATABASE" = "postgres" ]
 then
     echo "Waiting for postgres..."
