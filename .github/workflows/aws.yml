@@ -39,5 +39,5 @@ jobs:
         # docker push $ECR_REPOSITORY:latest
         # docker push $ECR_REPOSITORY:$IMAGE_TAG
         aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/o1f4z3e5
-        docker build -t public.ecr.aws/o1f4z3e5/wantem-django:$IMAGE_TAG
+        docker build -t public.ecr.aws/o1f4z3e5/wantem-django:$IMAGE_TAG .
         docker push public.ecr.aws/o1f4z3e5/wantem-django:$IMAGE_TAG
