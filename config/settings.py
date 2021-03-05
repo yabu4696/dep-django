@@ -1,10 +1,7 @@
 from pathlib import Path
 import os
 from datetime import timedelta
-import environ
 
-env = environ.Env()
-env.read_env('.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,11 +11,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 
-SECRET_KEY = env.get_value('SECRET_KEY')
+SECRET_KEY =os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get_value('DEBUG')
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['wanto-item.com']
 
@@ -71,12 +67,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.get_value('DATABASE_ENGINE'),
-        'NAME': env.get_value('DATABASE_DB'),
-        'USER': env.get_value('DATABASE_USER'),
-        'PASSWORD': env.get_value('DATABASE_PASSWORD'),
-        'HOST': env.get_value('DATABASE_HOST'),
-        'PORT': env.get_value('DATABASE_PORT'),
+        'ENGINE': os.environ.get('DATABASE_ENGINE'),
+        'NAME': os.environ.get('DATABASE_DB'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
 
