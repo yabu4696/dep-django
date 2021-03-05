@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-push:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 300
 
     steps:
@@ -36,5 +36,5 @@ jobs:
         docker build \
           --cache-from=$ECR_REPOSITORY:latest --build-arg BUILDKIT_INLINE_CACHE=1 \
           -t $ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REPOSITORY:latest .
-        docker push $ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REPOSITORY:latest
+        docker push $ECR_REPOSITORY:$IMAGE_TAG
