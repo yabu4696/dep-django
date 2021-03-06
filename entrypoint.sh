@@ -12,6 +12,7 @@ then
 fi
 
 python3 manage.py flush --no-input
+python3 manage.py makemigrations
 python3 manage.py migrate
 
 DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME \
