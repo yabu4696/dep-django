@@ -20,4 +20,4 @@ python3 manage.py migrate
 # python3 manage.py createsuperuser --noinput
 
 gunicorn config.wsgi --bind=0.0.0.0:8000
-celery -A config worker -l info
+# celery -A config worker -l info
