@@ -42,7 +42,7 @@ RUN apt-get install -y curl \
     && apt-get install -y python3.8-distutils \
     && python3.8 get-pip.py \
     && pip install -U pip \
-    && apt-get install -y build-essential libssl-dev libffi-dev python-dev python3-dev libpq-dev
+    && apt-get install -y build-essential libssl-dev libffi-dev python-dev python3-dev libpq-dev libcurl4-openssl-dev
 
 # pipenvのインストール
 RUN pip install pipenv

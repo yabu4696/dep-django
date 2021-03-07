@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = 'app'
+app_name = 'wantem'
 urlpatterns = [
     path('rayout',views.rayout,name='rayout'),
     path('',  views.index, name='index'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('item/<slug:slug>/exclusion', views.exclusion, name='exclusion'),
     path('maker_index',views.maker_index, name='maker_index'),
     path('maker/<slug:slug>', views.maker_detail, name='maker_detail'),
+    path('celery_test/', views.celery_test, name='celery_test'),
 ]

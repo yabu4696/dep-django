@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Item_maker, Tag, Wantoitem
+from .models import Item_maker, Tag, Wantoitem
 
 # class ContentImageInline(admin.TabularInline):
 #     model = ContentImage

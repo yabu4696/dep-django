@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppConfig',
+    'wantem.apps.WantemConfig',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -114,3 +115,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Defined in environment settings
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID") 
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_REGION =  os.environ.get("AWS_REGION")
+
+BROKER_URL = 'sqs://{0}:{1}@'.format(
+    urllib.parse.quote(AWS_ACCESS_KEY_ID, safe=''),
+    urllib.parse.quote(AWS_SECRET_ACCESS_KEY, safe='')
+)
+
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'region': AWS_REGION,
+    'polling_interval': 1,
+    'queue_name_prefix': 'wantem-sqs.fifo'
+}
+
+CELERY_RESULT_BACKEND = 'wantem-celery'

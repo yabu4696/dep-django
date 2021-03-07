@@ -1,3 +1,4 @@
+from requests.api import head
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import urllib.request as req
@@ -9,6 +10,8 @@ import re
 import requests
 import os
 from collections import defaultdict
+import certifi
+import urllib3
 
 
 def make_driver():
@@ -53,7 +56,7 @@ def get_title(url):
     headers_dic = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
     # os.environ['CURL_CA_BUNDLE'] = ''
     ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
-    url_info = requests.get(url, verify=ssl_path ,headers=headers_dic)
+    url_info = requests.get(url, verify=ssl_path , headers=headers_dic)
     url_html = BeautifulSoup(url_info.content, "html.parser")
     title = url_html.find('title')
     ogp_img = url_html.find('meta',property="og:image").get('content')
@@ -92,6 +95,8 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
             try:
                 title,ogp_img = get_title(url)
             except AttributeError:
+                continue
+            except requests.exceptions.SSLError:
                 continue
             if (len(title) > 255) or (len(url) > 200) or (len(ogp_img) > 200) or (not ogp_img):
                 continue
