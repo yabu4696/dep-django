@@ -18,6 +18,6 @@ python3 manage.py migrate
 # DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
 # DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
 # python3 manage.py createsuperuser --noinput
-celery -A config worker --detach
 
 gunicorn config.wsgi --bind=0.0.0.0:8000
+celery -A config worker -l info
