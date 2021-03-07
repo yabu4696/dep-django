@@ -134,4 +134,4 @@ CELERY_BROKER_TRANSPORT_OPTIONS = {
     'queue_name_prefix': 'wantem-sqs.fifo'
 }
 
-CELERY_RESULT_BACKEND = 'wantem-celery'
+CELERY_RESULT_BACKEND = 'django-db'
