@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel='stylesheet' href="{% static 'wantem/css/style_base.css' %}">
+    <link rel='stylesheet' href="{% static 'wantem/css/style_detail.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo_header">WaNTo</div>
+            <div class="maker_header">メーカー</div>
+            <div class="tag_header">タグ</div>
+            <form class="form_header" action="">
+                <div class="wrap_input">
+                    <input type="search">
+                </div>
+            </form>
+
+        </div>
+    </header>
+    <main>
+        <div class="item_maker">
+            <div class="maker_card">メーカー</div>
+            <div class="maker_card">アイテム</div>
+            <div class="item_card">
+                <div><img src="https://pc.watch.impress.co.jp/img/pcw/list/1290/745/H00.jpg">URL1</div>
+                <div>URL2</div>
+                <div>URL3</div>
+                <div>URL4</div>
+            </div>
+        </div>
+        <div class="item_maker">
+            <div class="maker_card">メーカー</div>
+            <div class="maker_card">アイテム</div>
+            <div class="item_card">
+                <div><img src="https://pc.watch.impress.co.jp/img/pcw/list/1290/745/H00.jpg">URL1</div>
+                <div>URL2</div>
+                <div>URL3</div>
+                <div>URL4</div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

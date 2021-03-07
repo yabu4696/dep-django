@@ -1,0 +1,15 @@
+{% extends 'wantem/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'wantem/css/style_other.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <h3>アイテム</h3>
+    <form method="POST" class='new_item'>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">登録</button> 
+    </form>
+</main>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'wantem/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'wantem/css/style_other.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <h3>除外</h3>
+    <form action="{% url 'wantem:exclusion' item.slug %}" method="POST" 　class="new_item">
+        {% for main in main_list %}
+        <p><input type="checkbox" name="exclusion_main" value="{{ main.pk }}"> {{ main.main_title }} </p>
+        {% endfor %}
+        {% for sub in sub_list %}
+        <p><input type="checkbox" name="exclusion_sub" value="{{ sub.pk }}"> {{ sub.sub_title }} </p>
+        {% endfor %}
+
+        {% csrf_token %}
+        <button type="submit">除外</button>
+    </form>
+</main>
+{% endblock %}

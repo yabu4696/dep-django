@@ -1,0 +1,187 @@
+html{
+    color: #989898;
+    font-family: 'Open Sans','Noto Sans JP', sans-serif;
+}
+
+body {
+    font-size: 2rem;
+    width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template:
+        " ...... ...... ...... " 25px
+        " header header header " 50px
+        " ...... ...... ...... " 50px
+        " ...... main ...... " 1fr
+            /  0px 1fr 0px
+}
+
+a{
+    text-decoration: none;
+    color: #989898;
+  }
+
+header {
+    grid-area: header;
+    border-bottom: solid 2px #989898;
+}
+header > .container{
+    height: 50px;
+    display: grid;
+    grid-template:
+    "logo ..... maker ..... search " 50px
+    /  200px 1fr 1fr 1fr 200px 
+}
+
+.logo_header{
+    grid-area: logo;
+    font-size: 50px;
+    height: 50px;
+    font-weight: 700;
+    text-align: left;
+    position: relative;
+}
+
+.logo_header > a{
+    position: absolute;
+    bottom: 0;
+}
+
+.maker_header{
+    grid-area: maker;
+    font-weight: 700;
+}
+
+
+.form_header{
+    grid-area: search;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    position:relative;
+    }
+
+#sbox{
+    height:30px;
+    padding:0 10px; 
+    position:absolute; 
+    left:0;
+    top:7px; 
+    border:  solid 2px #989898;
+    outline:0;
+}
+
+#sbtn{
+    height:30px;
+    position:absolute; 
+    right: 20px;
+    top: 10px;
+    background:none;
+    color:#989898;
+    border:none;
+    font-size:20px;/*アイコンサイズ*/
+}
+
+#sbtn:hover{
+color:#5e5e5e;
+}
+
+main{
+    grid-area: main;
+}
+
+.maker_card>a{
+	position: relative;
+	display: inline-block;
+	padding: 0.1em 0.3em;
+	text-decoration: none;
+}
+.maker_card>a:after{
+	position: absolute;
+	bottom: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	content: '';
+	transition: all 0.3s ease;
+	opacity: 0;
+	border-radius: 10px;
+	background-color: #989898;
+}
+.maker_card>a:hover:after{
+	bottom: 0;
+	height: 100%;
+	opacity: 0.3;
+}
+
+.item_card>.item>a{
+	position: relative;
+	display: inline-block;
+	padding: 0.1em 0.3em;
+	text-decoration: none;
+}
+.item_card>.item>a:after{
+	position: absolute;
+	bottom: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	content: '';
+	transition: all 0.3s ease;
+	opacity: 0;
+	border-radius: 10px;
+	background-color: #98989877;
+}
+.item_card>.item>a:hover:after{
+	bottom: 0;
+	height: 100%;
+	opacity: 0.3;
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        margin: 0 auto;
+        padding: 10px;
+        min-width: 800px;
+        grid-template:
+            "......." 0px   
+            "header" 50px
+            "......." 25px
+            "main " 1fr
+    }
+
+    .container{
+        display: grid;
+        grid-template:
+        "logo ..... maker ..... search " 50px
+        /  1fr 1fr 1fr 1fr 1fr  
+    }
+
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
