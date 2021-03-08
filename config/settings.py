@@ -18,7 +18,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY')
 DEBUG = False
 # DEBUG = True
 
-ALLOWED_HOSTS = ['wanto-item.com']
+ALLOWED_HOSTS = ['wanto-item.com','	172.16.1.117','172.16.0.232']
 
 
 # Application definition
