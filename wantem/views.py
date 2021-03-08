@@ -139,7 +139,7 @@ def exclusion(request,slug):
             exec_list_main = Main.objects.filter(pk__in=main_pks)
             for main in exec_list_main:
                 domain_name = urlparse(main.main_url).netloc
-                with open('./wantem/pattern/except_sub_list.txt', mode='a') as f:
+                with open('/workspace/wantem/pattern/except_sub_list.txt', mode='a') as f:
                     f.write('\n'+domain_name)
             exec_list_main.delete()
 
@@ -147,7 +147,7 @@ def exclusion(request,slug):
             exec_list_sub = Sub.objects.filter(pk__in=sub_pks)
             for sub in exec_list_sub:
                 domain_name = urlparse(sub.sub_url).netloc
-                with open('./wantem/pattern/except_sub_list.txt', mode='a') as f:
+                with open('/workspace/wantem/pattern/except_sub_list.txt', mode='a') as f:
                     f.write('\n'+domain_name)
             exec_list_sub.delete()
             return redirect('wantem:detail',slug=slug)

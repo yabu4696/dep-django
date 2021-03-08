@@ -34,10 +34,10 @@ class Wantoitem(models.Model):
         driver.get("https://google.com")
         search_word = self.maker_name.name + ' ' + self.item_name
         def_chrome.search(driver, search_word)
-        except_file_main = './wantem/pattern/except_main_list.txt'
-        except_file_sub = './wantem/pattern/except_sub_list.txt'
-        contain_title = './wantem/pattern/contain_title.txt'
-        except_title = './wantem/pattern/except_title.txt'
+        except_file_main = '/workspace/wantem/pattern/except_main_list.txt'
+        except_file_sub = '/workspace/wantem/pattern/except_sub_list.txt'
+        contain_title = '/workspace/wantem/pattern/contain_title.txt'
+        except_title = '/workspace/wantem/pattern/except_title.txt'
 
         in_keyword,out_keyword = def_chrome.get_url(driver,except_file_main,except_file_sub,contain_title,except_title)
         driver.close()
