@@ -18,7 +18,7 @@ python3 manage.py migrate
 # DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
 # DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
 # python3 manage.py createsuperuser --noinput
-cd wantem
+cd wantem/pattern
 ls -l
 cd ../
 
