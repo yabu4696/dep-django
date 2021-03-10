@@ -18,7 +18,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY')
 DEBUG = False
 # DEBUG = True
 
-ALLOWED_HOSTS = ['wanto-item.com','172.16.1.54','172.16.0.120']
+ALLOWED_HOSTS = ['camera.wanto-item.com','wanto-item.com','172.16.1.54','172.16.0.120']
 
 
 # Application definition
