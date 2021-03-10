@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
-from .forms import WantoitemForm
+from .forms import WantoitemForm, ContactForm
 from .models import Wantoitem, Main, Sub, Item_maker
+
+from django.http import HttpResponse
+from django.conf import settings
+import textwrap
+from django.core.mail import BadHeaderError, EmailMessage
 
 # chrome関数
 from . import def_chrome 
@@ -90,8 +95,8 @@ def reload(request):
     else:
         if request.method == 'POST':
             item_pks = request.POST.getlist('reload') 
-            reload_items = Wantoitem.objects.filter(pk__in=item_pks)
-            for item in reload_items:
+            # reload_items = Wantoitem.objects.filter(pk__in=item_pks)
+            # for item in reload_items:
                 # Main.objects.filter(wantoitem=item).delete()
                 # Sub.objects.filter(wantoitem=item).delete()
                 # in_keyword,out_keyword = item.scraping()
@@ -100,7 +105,8 @@ def reload(request):
                 # for sub_url,sub_list in out_keyword.items():
                 #     Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
                 # item.save()
-                reload_celery.apply_async(item_pks)
+            # item_pks=tuple(item_pks)
+            reload_celery.apply_async(item_pks)
             return redirect('wantem:reload')
         else:
             items = Wantoitem.objects.all().order_by('maker_name')
@@ -139,7 +145,7 @@ def exclusion(request,slug):
             exec_list_main = Main.objects.filter(pk__in=main_pks)
             for main in exec_list_main:
                 domain_name = urlparse(main.main_url).netloc
-                with open('/workspace/wantem/pattern/except_sub_list.txt', mode='a') as f:
+                with open('./wantem/pattern/except_sub_list.txt', mode='a') as f:
                     f.write('\n'+domain_name)
             exec_list_main.delete()
 
@@ -147,7 +153,7 @@ def exclusion(request,slug):
             exec_list_sub = Sub.objects.filter(pk__in=sub_pks)
             for sub in exec_list_sub:
                 domain_name = urlparse(sub.sub_url).netloc
-                with open('/workspace/wantem/pattern/except_sub_list.txt', mode='a') as f:
+                with open('./wantem/pattern/except_sub_list.txt', mode='a') as f:
                     f.write('\n'+domain_name)
             exec_list_sub.delete()
             return redirect('wantem:detail',slug=slug)
@@ -161,20 +167,70 @@ def exclusion(request,slug):
                 'sub_list':sub_list
                 })
 
-def rayout(request):
-    return render(request,'wantem/rayout_detail.html')
+def contact(request):
+  form = ContactForm(request.POST or None)
+  if form.is_valid():
+     name = form.cleaned_data['name']
+     message = form.cleaned_data['message']
+     email = form.cleaned_data['email']
+     subject = 'お問い合わせありがとうございます。'
+     contact = textwrap.dedent('''
+        ※このメールはシステムからの自動返信です。
+
+        {name} 様
+        
+        お問い合わせありがとうございます。
+        以下の内容でお問い合わせを受け付けました。
+        内容を確認させていただき、ご返信させていただきますので、少々お待ちください。
+
+        ----------------------------------
+
+        ・お名前
+        {name}
+
+        ・メールアドレス
+        {email}
+
+        ・メッセージ
+        {message}
+        
+        -----------------------------------
+        WEB: https://wanto-item.com/
+     ''').format(
+        name=name,
+        email=email,
+        message=message
+     )
+     to_list = [email]
+     bcc_list = [settings.EMAIL_HOST_USER]
+     try:
+        message = EmailMessage(subject=subject, body=contact, to=to_list, bcc=bcc_list)
+        message.send()
+     except BadHeaderError:
+        return HttpResponse('無効なヘッダが検出されました。')
+     return redirect('wantem:done')
+
+  return render(request, 'wantem/contact.html',{'form': form})
+
+def done(request):
+   return render(request, 'wantem/done.html')
 
 
-from celery.result import AsyncResult
 
-from config.tasks import add
+# def rayout(request):
+#     return render(request,'wantem/rayout_index.html')
 
-def celery_test(request):
-	task_id = add.delay(5, 5)
 
-	result = AsyncResult(task_id)
-	print('result:', result, ' : ', result.state, ' : ', result.ready())
+# from celery.result import AsyncResult
 
-	context = {'result': result}
+# from config.tasks import add
 
-	return render(request, 'wantem/celery-test.html', context)
+# def celery_test(request):
+# 	task_id = add.delay(5, 5)
+
+# 	result = AsyncResult(task_id)
+# 	print('result:', result, ' : ', result.state, ' : ', result.ready())
+
+# 	context = {'result': result}
+
+# 	return render(request, 'wantem/celery-test.html', context)

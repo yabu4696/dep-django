@@ -5,10 +5,10 @@
 {% endblock %}
 {% block content %}
 <main>
-    <div class="item_maker">
-        <div class="maker_card"><a href="{% url 'wantem:maker_detail' item.maker_name.slug %}">{{ item.maker_name.name }}</a></div>
-        <div class="maker_card">{{ item.item_name }}</div>
-        <div class="item_card">
+    <div class="item_title">
+        <div class="title_card"><a href="{% url 'wantem:maker_detail' item.maker_name.slug %}">{{ item.maker_name.name }}</a></div>
+        <div class="title_card">{{ item.item_name }}</div>
+        <div class="item_article_card">
             {% for main_list in main_lists %}
             <a href="{{ main_list.main_url }}" target="_blank" >
                 <div>{{ main_list.main_title }}</div>

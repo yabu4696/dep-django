@@ -6,8 +6,8 @@
 {% block content %}
 <main>
     {% for maker in maker_list %}
-    <div class="item_maker">
-        <div class="maker_card"><a href="{% url 'wantem:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
+    <div class="item_title">
+        <div class="title_card"><a href="{% url 'wantem:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
     </div>
     {% endfor %}
 </main>
