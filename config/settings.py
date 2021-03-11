@@ -18,7 +18,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY')
 DEBUG = False
 # DEBUG = True
 
-ALLOWED_HOSTS = ['camera.wanto-item.com','172.16.1.54','172.16.0.120']
+ALLOWED_HOSTS = ['www.wanto-item.com','wanto-item.com','172.16.1.54','172.16.0.120']
 
 
 # Application definition
@@ -30,11 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'wantem.apps.WantemConfig',
+    'ca_camera.apps.Ca_cameraConfig',
+    'home.apps.HomeConfig',
     'django_celery_results',
+    'django_hosts',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -42,9 +45,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
+ROOT_HOSTCONF = 'config.hosts'
+DEFAULT_HOST = 'home'
 
 TEMPLATES = [
     {

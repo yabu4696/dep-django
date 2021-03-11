@@ -1,0 +1,19 @@
+{% extends 'ca_camera/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'ca_camera/css/style_index.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% if items %}
+    <div class="item_title">
+        <div class="title_card"><a href="{% url 'ca_camera:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
+        <div class="item_card">
+            {% for item in items %}
+            <div class="item"><a href="{% url 'ca_camera:detail' item.slug %}">{{ item.item_name }}</a></div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock %}

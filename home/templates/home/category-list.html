@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'home/css/style_index.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% if categories %}
+    {% for category in categories %}
+    <div class="item_title">
+        <div class="title_card"><a href="{{ category.url }}">{{ category.name }}</a></div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</main>
+{% endblock %}

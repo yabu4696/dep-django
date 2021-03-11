@@ -1,0 +1,376 @@
+html{
+    color: #989898;
+    font-family: 'Open Sans','Noto Sans JP', sans-serif;
+}
+/* (min-width: 341px) and (max-width: 480px) */
+body {
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template:
+        "....... ....... ......." 0px   
+        "....... header  ......." 50px
+        "....... ....... ......." 0px
+        "....... main    ......." 1fr
+        "....... footer  ......." 20px
+        / 10px 1fr 10px
+}  
+a{
+    text-decoration: none;
+    color: #989898;
+    }
+
+header {
+    grid-area: header;
+    border-bottom: solid 2px #989898;
+}
+header > .container{
+    height: 50px;
+    display: grid;
+    grid-template:
+    "logo maker search " 50px
+    /   2fr 1fr 1fr 
+}
+
+.logo_header{
+    grid-area: logo;
+    font-size: 38px;
+    height: 50px;
+    font-weight: 700;
+    text-align: left;
+    position: relative;
+}
+
+.logo_header > a{
+    position: absolute;
+    bottom: 0;
+}
+
+.maker_header{
+    grid-area: maker;
+    font-weight: 700;
+    position: relative;
+}
+
+.maker_header > a{
+    position: absolute;
+    bottom: 6px;
+    left: 0px;
+    font-size: 19px;
+}
+
+
+.form_header{
+    grid-area: search;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    position:relative;
+    }
+
+#sbox{
+    height: 25px;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 18px;
+    position: absolute;
+    /* left: 0; */
+    right: 0;
+    /* top: 7px; */
+    font-size: 15px;
+    bottom: 6px;
+    border: solid 1px #989898;
+    outline: 0;
+    width: 72%;
+}
+
+
+#sbtn{
+    height: 23px;
+    position: absolute;
+    right: 2px;
+    bottom: 7px;
+    background: none;
+    color: #989898;
+    border: none;
+    font-size: 16px;
+    padding: 0;
+}
+
+
+#sbtn:hover{
+color:#5e5e5e;
+}
+
+footer{
+    grid-area: footer;
+    font-size: 11px;
+}
+
+footer > .container{
+    height: 20px;
+    display: grid;
+    grid-template:
+    "...... contact ...... question ......" 20px
+    /   1fr 1fr 1fr 1fr 1fr
+}
+.contact{
+    grid-area: contact;
+    text-align: center;
+}
+.question{
+    grid-area: question;
+    text-align: center;
+}
+
+
+main{
+    grid-area: main;
+    height: 100%;
+    overflow: scroll;
+        /* IE, Edge 対応 */
+    -ms-overflow-style: none;
+    /* Firefox 対応 */
+    scrollbar-width: none;
+}
+      /* Chrome, Safari 対応 */
+main::-webkit-scrollbar {
+    display:none
+}
+
+.title_card>a{
+    position: relative;
+    display: inline-block;
+    padding: 0.1em 0.3em;
+    text-decoration: none;
+}
+.title_card>a:after{
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    content: '';
+    transition: all 0.3s ease;
+    opacity: 0;
+    border-radius: 10px;
+    background-color: #989898;
+}
+.title_card>a:hover:after{
+    bottom: 0;
+    height: 100%;
+    opacity: 0.3;
+}
+
+.item_card>.item>a{
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+.item_card>.item>a:after{
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    content: '';
+    transition: all 0.3s ease;
+    opacity: 0;
+    border-radius: 10px;
+    background-color: #98989877;
+}
+.item_card>.item>a:hover:after{
+    bottom: 0;
+    height: 100%;
+    opacity: 0.3;
+}
+
+@media (max-width:340px){
+    .logo_header {
+        grid-area: logo;
+        font-size: 36px;
+        height: 50px;
+        font-weight: 700;
+        text-align: left;
+        position: relative;
+    }
+    
+    .maker_header > a {
+        position: absolute;
+        bottom: 8px;
+        left: 0px;
+        font-size: 15px;
+    }
+    #sbox {
+        height: 21px;
+        padding: 0;
+        padding-left: 5px;
+        padding-right: 18px;
+        position: absolute;
+        /* left: 0; */
+        right: 0;
+        /* top: 7px; */
+        font-size: 11px;
+        bottom: 8px;
+        border: solid 1px #989898;
+        outline: 0;
+        width: 66%;
+    
+    }
+
+}
+
+
+
+
+
+@media (min-width: 600px) {
+    body {
+        max-width: 1024px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: grid;
+        grid-template:
+        "....... ....... ......." 20px   
+        "....... header  ......." 50px
+        "....... ....... ......." 0px
+        "....... main    ......." 1fr
+        "....... footer  ......." 30px
+        / 10px 1fr 10px
+    }
+  
+    a{
+        text-decoration: none;
+        color: #989898;
+      }
+    
+    header {
+        grid-area: header;
+        border-bottom: solid 3px #989898;
+    }
+    header > .container{
+        height: 50px;
+        display: grid;
+        grid-template:
+        "logo ...... maker search " 50px
+        /   2fr 1fr 1fr 1fr
+    }
+    
+    .logo_header{
+        grid-area: logo;
+        font-size: 60px;
+        height: 50px;
+        font-weight: 700;
+        text-align: left;
+        position: relative;
+    }
+    
+    .logo_header > a{
+        position: absolute;
+        bottom: 0;
+    }
+    
+    .maker_header{
+        grid-area: maker;
+        font-weight: 700;
+        position: relative;
+    }
+    .maker_header > a{
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        /* right: 0px; */
+        font-size: 29px;
+    }
+    
+    
+    .form_header{
+        grid-area: search;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        position:relative;
+        }
+    
+    #sbox{
+        height: 36px;
+        padding: 0;
+        padding-left: 5px;
+        padding-right: 18px;
+        position: absolute;
+        /* left: 0; */
+        right: 0;
+        /* top: 7px; */
+        bottom: 6px;
+        font-size: 15px;
+        border: solid 2px #989898;
+        outline: 0;
+        width: 72%;
+    }
+    
+    #sbtn{
+        height: 31px;
+        position: absolute;
+        right: 2px;
+        bottom: 9px;
+        background: none;
+        color: #989898;
+        border: none;
+        font-size: 22px;
+        padding: 0;
+    }
+    
+    #sbtn:hover{
+    color:#5e5e5e;
+    }
+    footer{
+        grid-area: footer;
+        font-size: 19px;
+    }
+    footer > .container{
+        height: 30px;
+        display: grid;
+        grid-template:
+        "...... contact ...... question ......" 30px
+        /   1fr 1fr 1fr 1fr 1fr
+    }
+    .contact{
+        grid-area: contact;
+        text-align: center;
+    }
+    .question{
+        grid-area: question;
+        text-align: center;
+    }
+    
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	

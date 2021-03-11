@@ -1,0 +1,14 @@
+{% extends 'ca_camera/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'ca_camera/css/style_index.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    {% for maker in maker_list %}
+    <div class="item_title">
+        <div class="title_card"><a href="{% url 'ca_camera:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}
