@@ -135,13 +135,7 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 )
 
 BROKER_TRANSPORT_OPTIONS = {
-    'predefined_queues': {
-        'wanto-q.fifo': {
-            'url': 'https://sqs.ap-northeast-1.amazonaws.com/603538802210/wanto-q.fifo',
-            'access_key_id': AWS_ACCESS_KEY_ID,
-            'secret_access_key': AWS_SECRET_ACCESS_KEY,
-        }
-    }
+    'region': AWS_REGION,
 }
 
 CELERY_RESULT_BACKEND = 'django-db'
@@ -149,7 +143,6 @@ CELERY_IMPORTS = ('config.tasks', )
 
 CELERY_BROKER_URL = BROKER_URL
 CELERY_BROKER_TRANSPORT_OPTIONS = BROKER_TRANSPORT_OPTIONS
-CELERY_TASK_DEFAULT_QUEUE = "default"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
