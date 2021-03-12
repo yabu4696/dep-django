@@ -25,7 +25,6 @@ def reload_celery(*args):
             Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
         item.save()
 
-
 @shared_task
 def add(x1, x2):
 	time.sleep(10)
