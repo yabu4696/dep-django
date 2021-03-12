@@ -112,9 +112,6 @@ def reload_one(request, slug):
         else:
             return redirect('ca_camera:detail', slug=slug)
 
-
-            
-
 def edit(request, slug):
     if not request.user.is_superuser:
         return redirect('ca_camera:detail', slug=slug)
