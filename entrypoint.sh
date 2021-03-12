@@ -24,5 +24,5 @@ cd pattern
 ls -l
 cd /workspace
 
-celery -A config worker -B -l info
 gunicorn config.wsgi --bind=0.0.0.0:8000
+celery -A config worker -B -l info
