@@ -15,7 +15,7 @@ urlpatterns = [
     path('item/<slug:slug>/reload', views.reload_one, name='reload_one'),
     path('maker_index',views.maker_index, name='maker_index'),
     path('maker/<slug:slug>', views.maker_detail, name='maker_detail'),
-    # path('celery_test/', views.celery_test, name='celery_test'),
+    path('celery_test/', views.celery_test, name='celery_test'),
     path('contact', views.contact, name='contact'), 
     path('contact/done', views.done, name='done'),
 ]
