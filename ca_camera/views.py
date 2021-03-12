@@ -96,7 +96,7 @@ def reload(request):
         if request.method == 'POST':
             item_pks = request.POST.getlist('reload') 
             reload_celery.apply_async(item_pks)
-            return redirect('ca_camera:reload')
+            return redirect('ca_camera:index')
         else:
             items = Wantoitem.objects.all().order_by('maker_name')
             return render(request, 'ca_camera/reload.html', {'items':items})
