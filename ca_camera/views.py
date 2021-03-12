@@ -96,7 +96,7 @@ def reload(request):
         if request.method == 'POST':
             item_pks = request.POST.getlist('reload') 
             reload_celery.apply_async(item_pks)
-            return redirect('ca_camera:index')
+            return redirect('ca_camera:reload')
         else:
             items = Wantoitem.objects.all().order_by('maker_name')
             return render(request, 'ca_camera/reload.html', {'items':items})
@@ -223,16 +223,16 @@ def done(request):
 #     return render(request,'ca_camera/rayout_index.html')
 
 
-# from celery.result import AsyncResult
+from celery.result import AsyncResult
 
-# from config.tasks import add
+from config.tasks import add
 
-# def celery_test(request):
-# 	task_id = add.delay(5, 5)
+def celery_test(request):
+	task_id = add.delay(5, 5)
 
-# 	result = AsyncResult(task_id)
-# 	print('result:', result, ' : ', result.state, ' : ', result.ready())
+	result = AsyncResult(task_id)
+	print('result:', result, ' : ', result.state, ' : ', result.ready())
 
-# 	context = {'result': result}
+	context = {'result': result}
 
-# 	return render(request, 'ca_camera/celery-test.html', context)
+	return render(request, 'ca_camera/celery-test.html', context)
