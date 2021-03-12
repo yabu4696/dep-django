@@ -129,7 +129,7 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_REGION =  os.environ.get("AWS_REGION")
 
-BROKER_URL = 'sqs://{0}:{1}@https://sqs.ap-northeast-1.amazonaws.com/603538802210/wanto-q.fifo'.format(
+BROKER_URL = 'sqs://{0}:{1}@'.format(
     urllib.parse.quote(AWS_ACCESS_KEY_ID, safe=''),
     urllib.parse.quote(AWS_SECRET_ACCESS_KEY, safe='')
 )
