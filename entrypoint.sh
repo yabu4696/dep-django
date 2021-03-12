@@ -18,13 +18,12 @@ python3 manage.py migrate
 # DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
 # DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
 # python3 manage.py createsuperuser --noinput
-cd wantem
+cd ca_camera
 ls -l
 cd pattern
-ls -l 
-cd pattern 
 ls -l
-cd /workspace
+cd ca_camera
+ls -l
 
 celery -A config worker -B --detach
 gunicorn config.wsgi --bind=0.0.0.0:8000

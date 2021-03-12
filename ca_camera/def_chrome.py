@@ -33,6 +33,17 @@ def make_driver():
     driver.implicitly_wait(1)
     return driver
 
+def kw_in_title(file):
+    with open(file) as f:
+        kw_lists = [s.strip() for s in f.readlines()]
+    kw_list = ' OR '.join(kw_lists)
+    return kw_list
+
+def kw_out_title(file):
+    with open(file) as f:
+        kw_lists = [s.strip() for s in f.readlines()]
+    kw_list = ' -'.join(kw_lists)
+    return kw_list
 
 def search(driver, kw):
     # kw = input('検索：')
@@ -104,7 +115,7 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
             flag_out = macth_search(out_keyword,domain_name)
             if flag_in or flag_out:
                 continue
-            if len(in_keyword)+len(out_keyword) >= 10:
+            if len(in_keyword)+len(out_keyword) >= 20:
                 sign = True
                 break
             if bool(title_in_pattern.search(title)):
