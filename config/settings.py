@@ -141,7 +141,7 @@ CELERY_BROKER_TRANSPORT_OPTIONS = {
 }
 
 CELERY_RESULT_BACKEND = 'django-db'
-# CELERY_IMPORTS = ('config.tasks', )
+CELERY_IMPORTS = ('config.tasks', )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
