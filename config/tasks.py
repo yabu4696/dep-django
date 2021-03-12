@@ -13,8 +13,8 @@ def form_celery():
 		Sub.objects.create(wantoitem=new_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
 
 @shared_task
-def reload_celery(item_pks):
-    reload_items = Wantoitem.objects.filter(pk__in=item_pks)
+def reload_celery(*args):
+    reload_items = Wantoitem.objects.filter(pk__in=args)
     for item in reload_items:
         Main.objects.filter(wantoitem=item).delete()
         Sub.objects.filter(wantoitem=item).delete()
