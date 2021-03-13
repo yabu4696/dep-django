@@ -15,6 +15,7 @@ def form_celery():
 @shared_task
 def reload_celery(*args):
     reload_items = Wantoitem.objects.filter(pk__in=args)
+    print('処理開始')
     for item in reload_items:
         Main.objects.filter(wantoitem=item).delete()
         Sub.objects.filter(wantoitem=item).delete()
@@ -24,6 +25,7 @@ def reload_celery(*args):
         for sub_url,sub_list in out_keyword.items():
             Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
         item.save()
+    print('処理完了')
 
 @shared_task
 def add(x1, x2):
