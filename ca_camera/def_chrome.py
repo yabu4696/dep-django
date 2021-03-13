@@ -35,15 +35,15 @@ def make_driver():
 
 def kw_in_title(file):
     with open(file) as f:
-        kw_lists = [s.strip() for s in f.readlines()]
-    kw_list = ' OR '.join(kw_lists)
-    return kw_list
+        kw_in_lists = [s.strip() for s in f.readlines()]
+    kw_in_list = ' OR '.join(kw_in_lists)
+    return kw_in_list
 
 def kw_out_title(file):
     with open(file) as f:
-        kw_lists = [s.strip() for s in f.readlines()]
-    kw_list = ' -'.join(kw_lists)
-    return kw_list
+        kw_out_lists = [s.strip() for s in f.readlines()]
+    kw_out_list = ' -'.join(kw_out_lists)
+    return kw_out_list
 
 def search(driver, kw):
     # kw = input('検索：')

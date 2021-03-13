@@ -32,16 +32,16 @@ class Wantoitem(models.Model):
     def scraping(self):
         driver = def_chrome.make_driver()
         driver.get("https://google.com")
-        kw_in_title_path = './ca_camera/pattern/kw_in_title.txt'
-        kw_out_title_path = './ca_camera/pattern/kw_out_title.txt'
+        kw_in_title_path = '/workspace/ca_camera/pattern/kw_in_title.txt'
+        kw_out_title_path = '/workspace/ca_camera/pattern/kw_out_title.txt'
         kw_in_list = def_chrome.kw_in_title(kw_in_title_path)
         kw_out_list = def_chrome.kw_out_title(kw_out_title_path)
         search_word = self.maker_name.name+' AND '+self.item_name+' AND '+('({})'+' -{}').format(kw_in_list,kw_out_list)
         def_chrome.search(driver, search_word)
-        except_file_main = './ca_camera/pattern/except_main_list.txt'
-        except_file_sub = './ca_camera/pattern/except_sub_list.txt'
-        contain_title = './ca_camera/pattern/contain_title.txt'
-        except_title = './ca_camera/pattern/except_title.txt'
+        except_file_main = '/workspace/ca_camera/pattern/except_main_list.txt'
+        except_file_sub = '/workspace/ca_camera/pattern/except_sub_list.txt'
+        contain_title = '/workspace/ca_camera/pattern/contain_title.txt'
+        except_title = '/workspace/ca_camera/pattern/except_title.txt'
 
         in_keyword,out_keyword = def_chrome.get_url(driver,except_file_main,except_file_sub,contain_title,except_title)
         driver.close()
