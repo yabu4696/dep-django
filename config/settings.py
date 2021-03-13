@@ -129,9 +129,6 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_REGION =  os.environ.get("AWS_REGION")
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID") 
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_REGION =  os.environ.get("AWS_REGION")
 
 BROKER_URL = 'sqs://{0}:{1}@'.format(
     urllib.parse.quote(AWS_ACCESS_KEY_ID, safe=''),
@@ -140,7 +137,6 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': AWS_REGION,
-    'polling_interval': 1,
     'queue_name_prefix': '-wanto.fifo'
 }
 
