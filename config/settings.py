@@ -137,7 +137,6 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': AWS_REGION,
-    'queue_name_prefix': '-wanto.fifo'
 }
 
 CELERY_RESULT_BACKEND = 'django-db'

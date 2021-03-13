@@ -22,12 +22,6 @@ def category(request):
         'categories':categories,
     })
 
-
-
-
-
-
-
 def contact(request):
   form = ContactForm(request.POST or None)
   if form.is_valid():
