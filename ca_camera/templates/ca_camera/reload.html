@@ -7,10 +7,10 @@
 <main>
     <h3>更新</h3>
     <form action="{% url 'ca_camera:reload' %}" method="POST"　class="new_item">
+        {% csrf_token %}
         {% for item in items %}
         <p><input type="checkbox" name="reload" value="{{ item.pk }}"> {{ item.item_name }} </p>
         {% endfor %}
-        {% csrf_token %}
         <button type="submit">更新</button>
     </form>
 </main>
