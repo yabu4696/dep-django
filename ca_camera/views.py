@@ -101,16 +101,16 @@ def reload(request):
             items = Wantoitem.objects.all().order_by('maker_name')
             return render(request, 'ca_camera/reload.html', {'items':items})
 
-def reload_one(request, slug):
-    if not request.user.is_superuser:
-        return redirect('ca_camera:detail', slug=slug)
-    else:
-        if request.method == 'POST':
-            item_pk = request.POST.getlist('reload') 
-            reload_celery.apply_async(item_pk)
-            return redirect('ca_camera:detail', slug=slug)
-        else:
-            return redirect('ca_camera:detail', slug=slug)
+# def reload_one(request, slug):
+#     if not request.user.is_superuser:
+#         return redirect('ca_camera:detail', slug=slug)
+#     else:
+#         if request.method == 'POST':
+#             item_pk = request.POST.getlist('reload') 
+#             reload_celery.apply_async(item_pk)
+#             return redirect('ca_camera:detail', slug=slug)
+#         else:
+#             return redirect('ca_camera:detail', slug=slug)
 
 def edit(request, slug):
     if not request.user.is_superuser:

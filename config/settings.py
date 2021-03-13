@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'django_celery_results',
     'django_hosts',
+    'ca_camera',
+    'home',
 ]
 
 MIDDLEWARE = [
