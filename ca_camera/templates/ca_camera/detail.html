@@ -6,9 +6,9 @@
 {% block content %}
 <main>
     <div class="item_title">
-        <div class="title_card"><a
-                href="{% url 'ca_camera:maker_detail' item.maker_name.slug %}">{{ item.maker_name.name }}</a></div>
+        <div class="title_card"><a href="{% url 'ca_camera:maker_detail' item.maker_name.slug %}">{{ item.maker_name.name }}</a></div>
         <div class="title_card"><a>{{ item.item_name }}</a></div>
+    </div>
         <!-- {% if user.is_superuser %}
         <div class="title_card">
             <form action="{% url 'ca_camera:reload_one' item.slug %}" method="POST">
@@ -17,7 +17,6 @@
             </form>
         </div>
         {% endif %} -->
-    </div>
     <div class="item_article_card">
         {% for main_list in main_lists %}
         <a href="{{ main_list.main_url }}" target="_blank">
