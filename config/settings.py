@@ -137,7 +137,7 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 BROKER_TRANSPORT_OPTIONS = {
     'region': AWS_REGION,
     'polling_interval': 1,
-    'queue_name_prefix': 'wanto-q.fifo'
+    'queue_name_prefix': 'celery-'
 }
 
 CELERY_RESULT_BACKEND = 'django-db'
