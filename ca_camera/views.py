@@ -12,6 +12,8 @@ from django.core.mail import BadHeaderError, EmailMessage
 from . import def_chrome 
 from urllib.parse import urlparse
 
+from config.tasks import form_celery
+
 
 def index(request):
     items = Wantoitem.objects.all().order_by('maker_name')
@@ -52,8 +54,6 @@ def maker_detail(request, slug):
         'items':items,
         'maker':maker,
         })
-
-from config.tasks import form_celery
 
 def form(request):
     if not request.user.is_superuser:
