@@ -129,16 +129,34 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_REGION =  os.environ.get("AWS_REGION")
 
+from kombu.utils.url import safequote
 
-BROKER_URL = 'sqs://{0}:{1}@'.format(
-    urllib.parse.quote(AWS_ACCESS_KEY_ID, safe=''),
-    urllib.parse.quote(AWS_SECRET_ACCESS_KEY, safe='')
+aws_access_key = safequote(AWS_ACCESS_KEY_ID)
+aws_secret_key = safequote(AWS_SECRET_ACCESS_KEY)
+
+BROKER_URL  = "sqs://{aws_access_key}:{aws_secret_key}@".format(
+    aws_access_key=aws_access_key, aws_secret_key=aws_secret_key,
 )
 
-CELERY_BROKER_TRANSPORT_OPTIONS = {
+# BROKER_URL = 'sqs://{0}:{1}@'.format(
+#     urllib.parse.quote(AWS_ACCESS_KEY_ID, safe=''),
+#     urllib.parse.quote(AWS_SECRET_ACCESS_KEY, safe='')
+# )
+
+BROKER_TRANSPORT_OPTIONS = {
     'region': AWS_REGION,
+    'predefined_queues': {
+        'my-q': {
+            'url': 'https://sqs.ap-northeast-1.amazonaws.com/603538802210/my-q',
+            'access_key_id': AWS_ACCESS_KEY_ID,
+            'secret_access_key': AWS_SECRET_ACCESS_KEY,
+        }
+    }
 }
 
+CELERY_BROKER_URL = BROKER_URL
+CELERY_BROKER_TRANSPORT_OPTIONS = BROKER_TRANSPORT_OPTIONS
+CELERY_TASK_DEFAULT_QUEUE = 'default'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_IMPORTS = ('config.tasks', )
 

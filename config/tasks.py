@@ -3,6 +3,8 @@ from celery import shared_task
 import time
 from ca_camera.models import Wantoitem, Main, Sub, Item_maker
 
+app = Celery('tasks', broker='pyamqp://guest@localhost//')
+
 @shared_task
 def form_celery():
 	new_item = Wantoitem.objects.all().latest('id')
