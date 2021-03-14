@@ -64,10 +64,12 @@ def re_pattern(except_file_main,except_file_sub):
     return pattern  
 
 def get_title(url):
+    print('途中１-タイトル開始')
     headers_dic = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
     # os.environ['CURL_CA_BUNDLE'] = ''
-    ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
-    url_info = requests.get(url, verify=ssl_path, headers=headers_dic)
+    # ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
+    ssl_path = certifi.where()
+    url_info = requests.get(url,verify=ssl_path,headers=headers_dic)
     print('途中１-リクエスト実行')
     url_html = BeautifulSoup(url_info.content, "html.parser")
     print('途中１-スクレイピング実行')
@@ -82,7 +84,8 @@ def macth_search(dictionary, domain_name):
             flag = True
             break
     return flag
-
+# url_info = requests.get(url, verify=ssl_path ,headers=headers_dic)
+# url_info = requests.get(url, verify=ssl_path , headers=headers_dic)
 def next_page(driver):
     next_button = driver.find_element_by_id("pnnext")
     next_button.click()
