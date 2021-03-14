@@ -121,7 +121,7 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
             flag_out = macth_search(out_keyword,domain_name)
             if flag_in or flag_out:
                 continue
-            if len(in_keyword)+len(out_keyword) >= 20:
+            if len(in_keyword)+len(out_keyword) >= 5:
                 sign = True
                 break
             if bool(title_in_pattern.search(title)):
