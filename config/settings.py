@@ -135,14 +135,7 @@ BROKER_URL = 'sqs://{0}:{1}@'.format(
 )
 
 BROKER_TRANSPORT_OPTIONS = {
-    'region': AWS_REGION,
-    'predefined_queues': {
-        'my-q': {
-            'url': 'https://sqs.ap-northeast-1.amazonaws.com/603538802210/my-q',
-            'access_key_id': AWS_ACCESS_KEY_ID,
-            'secret_access_key': AWS_SECRET_ACCESS_KEY,
-        }
-    }
+    'region': AWS_REGION
 }
 
 CELERY_BROKER_URL = BROKER_URL
