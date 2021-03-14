@@ -63,13 +63,13 @@ def form(request):
             form = WantoitemForm(request.POST)
             if form.is_valid():
                 form.save()
-                new_item = Wantoitem.objects.all().latest('id')
-                in_keyword,out_keyword = new_item.scraping()
-                for main_url,main_list in in_keyword.items():
-                    Main.objects.create(wantoitem=new_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
-                for sub_url,sub_list in out_keyword.items():
-                    Sub.objects.create(wantoitem=new_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
-                # form_celery.delay()
+                # new_item = Wantoitem.objects.all().latest('id')
+                # in_keyword,out_keyword = new_item.scraping()
+                # for main_url,main_list in in_keyword.items():
+                #     Main.objects.create(wantoitem=new_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
+                # for sub_url,sub_list in out_keyword.items():
+                #     Sub.objects.create(wantoitem=new_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
+                form_celery.apply_async()
             return redirect('ca_camera:index')
         else:
             form = WantoitemForm()
