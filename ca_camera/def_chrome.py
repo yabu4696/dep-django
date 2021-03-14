@@ -101,6 +101,7 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
         a_tag = elem.find_element_by_tag_name("a")
         url = a_tag.get_attribute("href")
         domain_name = urlparse(url).netloc
+        print('途中１-ドメイン取得')
         if not bool(url_pattern.search(url)):
             try:
                 title,ogp_img = get_title(url)
@@ -133,6 +134,7 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
     print('途中１-パターン作成')
     in_keyword = defaultdict(list)
     out_keyword = defaultdict(list)
+    print('途中１-空辞書作成')
     while True:
         in_keyword,out_keyword,sign = adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title_out_pattern)
         if sign:
