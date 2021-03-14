@@ -124,18 +124,18 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
             elif not bool(title_out_pattern.search(title)):
                 out_keyword[url].append(title)
                 out_keyword[url].append(ogp_img)            
-    return in_keyword,out_keyword, sign
+    return in_keyword,out_keyword,sign
 
 def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
     url_pattern = re_pattern(except_file_main,except_file_sub)
     title_in_pattern = re_pattern_title(contain_title)
     title_out_pattern = re_pattern_title(except_title)
+    print('途中１-パターン作成')
     in_keyword = defaultdict(list)
     out_keyword = defaultdict(list)
     while True:
         in_keyword,out_keyword,sign = adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title_out_pattern)
         if sign:
             break
-        next_page(driver)
-
+        next_page(driver)  
     return in_keyword, out_keyword
