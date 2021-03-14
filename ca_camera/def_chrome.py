@@ -67,8 +67,10 @@ def get_title(url):
     headers_dic = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
     # os.environ['CURL_CA_BUNDLE'] = ''
     ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
-    url_info = requests.get(url, verify=ssl_path , headers=headers_dic)
+    url_info = requests.get(url, verify=ssl_path, headers=headers_dic)
+    print('途中１-リクエスト実行')
     url_html = BeautifulSoup(url_info.content, "html.parser")
+    print('途中１-スクレイピング実行')
     title = url_html.find('title')
     ogp_img = url_html.find('meta',property="og:image").get('content')
     return title.text,ogp_img
@@ -124,7 +126,9 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
                 in_keyword[url].append(ogp_img)
             elif not bool(title_out_pattern.search(title)):
                 out_keyword[url].append(title)
-                out_keyword[url].append(ogp_img)            
+                out_keyword[url].append(ogp_img)
+        else:
+            print('途中１-パターン除去')
     return in_keyword,out_keyword,sign
 
 def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
