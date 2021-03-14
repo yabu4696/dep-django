@@ -94,7 +94,7 @@ def reload(request):
     else:
         if request.method == 'POST':
             item_pks = request.POST.getlist('reload') 
-            item_pks=tuple(item_pks)
+            # item_pks=tuple(item_pks)
             reload_celery.apply_async(item_pks)
             return redirect('ca_camera:reload')
         else:
