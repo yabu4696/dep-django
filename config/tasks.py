@@ -7,7 +7,9 @@ from ca_camera.models import Wantoitem, Main, Sub, Item_maker
 def form_celery():
     print('処理開始')
     new_item = Wantoitem.objects.all().latest('id')
+    print('途中１')
     in_keyword,out_keyword = new_item.scraping()
+    print('途中２')
     for main_url,main_list in in_keyword.items():
         Main.objects.create(wantoitem=new_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
     for sub_url,sub_list in out_keyword.items():

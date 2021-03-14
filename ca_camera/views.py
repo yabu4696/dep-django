@@ -12,8 +12,8 @@ from django.core.mail import BadHeaderError, EmailMessage
 from . import def_chrome 
 from urllib.parse import urlparse
 
-from config.tasks import form_celery
-
+from celery.result import AsyncResult
+from config.tasks import form_celery, reload_celery, add
 
 def index(request):
     items = Wantoitem.objects.all().order_by('maker_name')
@@ -87,7 +87,6 @@ def delete(request):
             items = Wantoitem.objects.all()
             return render(request, 'ca_camera/delete.html', {'items':items})
 
-from config.tasks import reload_celery
 
 def reload(request):
     if not request.user.is_superuser:
@@ -220,10 +219,6 @@ def done(request):
 # def rayout(request):
 #     return render(request,'ca_camera/rayout_index.html')
 
-
-from celery.result import AsyncResult
-
-from config.tasks import add
 
 def celery_test(request):
 	task_id = add.delay(5, 5)
