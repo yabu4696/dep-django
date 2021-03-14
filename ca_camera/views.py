@@ -69,7 +69,7 @@ def form(request):
                 #     Main.objects.create(wantoitem=new_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
                 # for sub_url,sub_list in out_keyword.items():
                 #     Sub.objects.create(wantoitem=new_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
-                form_celery.apply_async()
+                form_celery.delay()
             return redirect('ca_camera:index')
         else:
             form = WantoitemForm()
