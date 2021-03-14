@@ -31,6 +31,7 @@ class Wantoitem(models.Model):
 
     def scraping(self):
         driver = def_chrome.make_driver()
+        print('途中１-ドライバ初期設定')
         driver.get("https://google.com")
         kw_in_title_path = '/workspace/ca_camera/pattern/kw_in_title.txt'
         kw_out_title_path = '/workspace/ca_camera/pattern/kw_out_title.txt'

@@ -71,7 +71,7 @@ def get_title(url):
     url_html = BeautifulSoup(url_info.content, "html.parser")
     title = url_html.find('title')
     ogp_img = url_html.find('meta',property="og:image").get('content')
-    return title.text, ogp_img
+    return title.text,ogp_img
 
 def macth_search(dictionary, domain_name):
     flag=False
@@ -101,7 +101,6 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
         a_tag = elem.find_element_by_tag_name("a")
         url = a_tag.get_attribute("href")
         domain_name = urlparse(url).netloc
-
         if not bool(url_pattern.search(url)):
             try:
                 title,ogp_img = get_title(url)
@@ -109,6 +108,7 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
                 continue
             except requests.exceptions.SSLError:
                 continue
+            print('途中１-タイトル取得')
             if (len(title) > 255) or (len(url) > 200) or (len(ogp_img) > 200) or (not ogp_img):
                 continue
             flag_in = macth_search(in_keyword,domain_name)
@@ -138,4 +138,5 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
         if sign:
             break
         next_page(driver)  
-    return in_keyword, out_keyword
+        print('途中１-ネクストページ')
+    return in_keyword,out_keyword
