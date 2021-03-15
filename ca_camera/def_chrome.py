@@ -72,7 +72,7 @@ def get_title(url):
     ssl_path = certifi.where()
     url_info = requests.get(url,verify=ssl_path,headers=headers,timeout=3)
     # print('non timeout')
-    print(url_info.raise_for_status())
+    # print(url_info.raise_for_status())
     url_html = BeautifulSoup(url_info.content, "html.parser")
     # print('途中１-スクレイピング実行')
     title = url_html.find('title')
