@@ -64,17 +64,17 @@ def re_pattern(except_file_main,except_file_sub):
     return pattern  
 
 def get_title(url):
-    print('途中１-タイトル開始')
+    # print('途中１-タイトル開始')
     # headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
     headers = {"User-Agent": "~~~~~"}
     # os.environ['CURL_CA_BUNDLE'] = ''
     # ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
     ssl_path = certifi.where()
     url_info = requests.get(url,verify=ssl_path,headers=headers,timeout=3)
-    print('non timeout')
-    # print(url_info.raise_for_status())
+    # print('non timeout')
+    print(url_info.raise_for_status())
     url_html = BeautifulSoup(url_info.content, "html.parser")
-    print('途中１-スクレイピング実行')
+    # print('途中１-スクレイピング実行')
     title = url_html.find('title')
     ogp_img = url_html.find('meta',property="og:image").get('content')
     return title.text,ogp_img
@@ -108,7 +108,7 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
         a_tag = elem.find_element_by_tag_name("a")
         url = a_tag.get_attribute("href")
         domain_name = urlparse(url).netloc
-        print('途中１-ドメイン取得')
+        # print('途中１-ドメイン取得')
         if not bool(url_pattern.search(url)):
             try:
                 flag_rq = False
@@ -118,17 +118,17 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
             except requests.exceptions.SSLError:
                 continue
             except Exception as e:
-                print('timeout')
-                print(e.args)
+                # print('timeout')
+                # print(e.args)
                 continue
-            print('途中１-タイトル取得')
+            # print('途中１-タイトル取得')
             if (len(title) > 255) or (len(url) > 200) or (len(ogp_img) > 200) or (not ogp_img):
                 continue
             flag_in = macth_search(in_keyword,domain_name)
             flag_out = macth_search(out_keyword,domain_name)
             if flag_in or flag_out:
                 continue
-            if len(in_keyword)+len(out_keyword) >= 5:
+            if len(in_keyword)+len(out_keyword) >= 20:
                 sign = True
                 break
             if bool(title_in_pattern.search(title)):
@@ -138,25 +138,25 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
                 out_keyword[url].append(title)
                 out_keyword[url].append(ogp_img)
         else:
-            print('途中１-パターン除去')
+            continue
     return in_keyword,out_keyword,sign
 
 def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
     url_pattern = re_pattern(except_file_main,except_file_sub)
     title_in_pattern = re_pattern_title(contain_title)
     title_out_pattern = re_pattern_title(except_title)
-    print('途中１-パターン作成')
+    # print('途中１-パターン作成')
     in_keyword = defaultdict(list)
     out_keyword = defaultdict(list)
     start_time = time.time()
-    print('途中１-ループ開始')
+    # print('途中１-ループ開始')
     while True:
         in_keyword,out_keyword,sign = adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title_out_pattern)
         if sign:
             break
         next_page(driver)  
-        print('途中１-ネクストページ')
+        # print('途中１-ネクストページ')
         if time.time() - start_time > 180:
-            print('timeout')
+            # print('timeout')
             break
     return in_keyword,out_keyword
