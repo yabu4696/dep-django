@@ -70,7 +70,8 @@ def get_title(url):
     # os.environ['CURL_CA_BUNDLE'] = ''
     # ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
     ssl_path = certifi.where()
-    url_info = requests.get(url,verify=ssl_path,headers=headers)
+    # url_info = requests.get(url,verify=ssl_path,headers=headers)
+    url_info = requests.get(url,verify=ssl_path)
     print('途中１-リクエスト実行')
     url_html = BeautifulSoup(url_info.content, "html.parser")
     print('途中１-スクレイピング実行')
