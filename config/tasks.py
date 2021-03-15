@@ -6,7 +6,7 @@ from ca_camera.models import Wantoitem, Main, Sub, Item_maker
 @shared_task
 def form_celery():
     print('処理開始')
-    new_item = Wantoitem.objects.all().latest('id')
+    new_item = Wantoitem.objects.all().order_by("-id")[0]
     print('途中１')
     in_keyword,out_keyword = new_item.scraping()
     print('途中２')

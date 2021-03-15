@@ -29,7 +29,7 @@ def make_driver():
     options.add_argument('--lang=ja-JP')
     options.add_argument('--headless')
 
-    driver = webdriver.Chrome(options=options,executable_path = CHROME_DRIVER)
+    driver = webdriver.Chrome(options=options,executable_path=CHROME_DRIVER)
     driver.implicitly_wait(10)
     return driver
 
