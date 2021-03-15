@@ -7,9 +7,9 @@ from ca_camera.models import Wantoitem, Main, Sub, Item_maker
 def form_celery():
     print('処理開始')
     new_item = Wantoitem.objects.all().order_by("-id")[0]
-    print('途中１')
+    # print('途中１')
     in_keyword,out_keyword = new_item.scraping()
-    print('途中２')
+    # print('途中２')
     for main_url,main_list in in_keyword.items():
         Main.objects.create(wantoitem=new_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
     for sub_url,sub_list in out_keyword.items():
@@ -19,7 +19,7 @@ def form_celery():
 @shared_task
 def reload_celery(*args):
     reload_items = Wantoitem.objects.filter(pk__in=args)
-    print('処理開始')
+    # print('処理開始')
     for item in reload_items:
         Main.objects.filter(wantoitem=item).delete()
         Sub.objects.filter(wantoitem=item).delete()
@@ -29,6 +29,7 @@ def reload_celery(*args):
         for sub_url,sub_list in out_keyword.items():
             Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
         item.save()
+        print('singleスクレイピング')
     print('処理完了')
 
 @shared_task

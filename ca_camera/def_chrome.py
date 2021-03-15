@@ -149,7 +149,7 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
     in_keyword = defaultdict(list)
     out_keyword = defaultdict(list)
     start_time = time.time()
-    # print('途中１-ループ開始')
+    print('ループ開始')
     while True:
         in_keyword,out_keyword,sign = adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title_out_pattern)
         if sign:
@@ -159,4 +159,5 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
         if time.time() - start_time > 180:
             # print('timeout')
             break
+    print('ループ完了')
     return in_keyword,out_keyword
