@@ -111,14 +111,18 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
         print('途中１-ドメイン取得')
         if not bool(url_pattern.search(url)):
             try:
+                flag_rq = False
                 title,ogp_img = get_title(url)
             except AttributeError:
                 continue
             except requests.exceptions.SSLError:
                 continue
             except Exception as e:
+                flag_rq = True
                 print('timeout')
                 print(e.args)
+            if flag_rq:
+                continue
             print('途中１-タイトル取得')
             if (len(title) > 255) or (len(url) > 200) or (len(ogp_img) > 200) or (not ogp_img):
                 continue
