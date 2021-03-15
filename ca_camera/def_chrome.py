@@ -30,7 +30,7 @@ def make_driver():
     options.add_argument('--headless')
 
     driver = webdriver.Chrome(options=options,executable_path = CHROME_DRIVER)
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(10)
     return driver
 
 def kw_in_title(file):
