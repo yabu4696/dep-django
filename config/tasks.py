@@ -19,7 +19,7 @@ def form_celery():
 @shared_task
 def reload_celery(*args):
     reload_items = Wantoitem.objects.filter(pk__in=args)
-    # print('処理開始')
+    print('処理開始')
     for item in reload_items:
         Main.objects.filter(wantoitem=item).delete()
         Sub.objects.filter(wantoitem=item).delete()

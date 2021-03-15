@@ -65,8 +65,8 @@ def re_pattern(except_file_main,except_file_sub):
 
 def get_title(url):
     # print('途中１-タイトル開始')
-    # headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
-    headers = {"User-Agent": "~~~~~"}
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36"}
+    # headers = {"User-Agent": "~~~~~"}
     # os.environ['CURL_CA_BUNDLE'] = ''
     # ssl_path = '/usr/local/lib/python3.8/dist-packages/certifi/cacert.pem'
     ssl_path = certifi.where()
@@ -111,15 +111,13 @@ def adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title
         # print('途中１-ドメイン取得')
         if not bool(url_pattern.search(url)):
             try:
-                flag_rq = False
                 title,ogp_img = get_title(url)
             except AttributeError:
                 continue
             except requests.exceptions.SSLError:
                 continue
-            except Exception as e:
+            except Exception:
                 # print('timeout')
-                # print(e.args)
                 continue
             # print('途中１-タイトル取得')
             if (len(title) > 255) or (len(url) > 200) or (len(ogp_img) > 200) or (not ogp_img):
@@ -156,7 +154,7 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
             break
         next_page(driver)  
         # print('途中１-ネクストページ')
-        if time.time() - start_time > 180:
+        if time.time() - start_time > 300:
             # print('timeout')
             break
     print('ループ完了')
