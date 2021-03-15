@@ -141,11 +141,15 @@ def get_url(driver,except_file_main,except_file_sub,contain_title,except_title):
     print('途中１-パターン作成')
     in_keyword = defaultdict(list)
     out_keyword = defaultdict(list)
-    print('途中１-空辞書作成')
+    start_time = time.time()
+    print('途中１-ループ開始')
     while True:
         in_keyword,out_keyword,sign = adress_list(driver,in_keyword,out_keyword,url_pattern,title_in_pattern,title_out_pattern)
         if sign:
             break
         next_page(driver)  
         print('途中１-ネクストページ')
+        if time.time() - start_time > 180:
+            print('timeout')
+            break
     return in_keyword,out_keyword
