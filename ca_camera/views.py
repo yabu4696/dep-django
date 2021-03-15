@@ -94,18 +94,18 @@ def reload(request):
     else:
         if request.method == 'POST':
             item_pks = request.POST.getlist('reload') 
-            reload_items = Wantoitem.objects.filter(pk__in=item_pks)
-            for item in reload_items:
-                Main.objects.filter(wantoitem=item).delete()
-                Sub.objects.filter(wantoitem=item).delete()
-                in_keyword,out_keyword = item.scraping()
-                for main_url,main_list in in_keyword.items():
-                    Main.objects.create(wantoitem=item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
-                for sub_url,sub_list in out_keyword.items():
-                    Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
-                item.save()
+            # reload_items = Wantoitem.objects.filter(pk__in=item_pks)
+            # for item in reload_items:
+            #     Main.objects.filter(wantoitem=item).delete()
+            #     Sub.objects.filter(wantoitem=item).delete()
+            #     in_keyword,out_keyword = item.scraping()
+            #     for main_url,main_list in in_keyword.items():
+            #         Main.objects.create(wantoitem=item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
+            #     for sub_url,sub_list in out_keyword.items():
+            #         Sub.objects.create(wantoitem=item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
+            #     item.save()
             # item_pks=tuple(item_pks)
-            # reload_celery.apply_async(item_pks)
+            reload_celery.apply_async(item_pks)
             return redirect('ca_camera:reload')
         else:
             items = Wantoitem.objects.all().order_by('maker_name')
@@ -154,6 +154,8 @@ def exclusion(request,slug):
             exec_list_main = Main.objects.filter(pk__in=main_pks)
             for main in exec_list_main:
                 domain_name = urlparse(main.main_url).netloc
+                if 'www' in domain_name:
+                    domain_name = domain_name.replace('www', '')
                 with open('./ca_camera/pattern/except_sub_list.txt', mode='a') as f:
                     f.write('\n'+domain_name)
             exec_list_main.delete()
