@@ -1,7 +1,7 @@
-from datetime import datetime
-from celery import shared_task
-import time
-from ca_camera.models import Wantoitem, Main, Sub, Item_maker
+# from datetime import datetime
+# from celery import shared_task
+# import time
+# from ca_camera.models import Wantoitem, Main, Sub, Item_maker
 
 # @shared_task
 # def form_celery():
