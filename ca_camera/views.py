@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
-from .forms import WantoitemForm, ContactForm
+# from .forms import WantoitemForm, ContactForm
+from .forms import ContactForm
 from .models import Wantoitem, Main, Sub, Item_maker
 
 from django.http import HttpResponse
@@ -122,28 +123,28 @@ def delete(request):
 #         else:
 #             return redirect('ca_camera:detail', slug=slug)
 
-def edit(request, slug):
-    if not request.user.is_superuser:
-        return redirect('ca_camera:detail', slug=slug)
-    else:
-        item = get_object_or_404(Wantoitem,slug=slug)
-        if request.method == 'POST':
-            form = WantoitemForm(request.POST,instance=item)
-            if form.is_valid():
-                form.save()
-                edit_item = get_object_or_404(Wantoitem,slug=slug)
-                Main.objects.filter(wantoitem=item).delete()
-                Sub.objects.filter(wantoitem=item).delete()
-                in_keyword,out_keyword = edit_item.scraping()
-                for main_url,main_list in in_keyword.items():
-                    Main.objects.create(wantoitem=edit_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
-                for sub_url,sub_list in out_keyword.items():
-                    Sub.objects.create(wantoitem=edit_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
-            return redirect('ca_camera:detail', slug=slug)
+# def edit(request, slug):
+#     if not request.user.is_superuser:
+#         return redirect('ca_camera:detail', slug=slug)
+#     else:
+#         item = get_object_or_404(Wantoitem,slug=slug)
+#         if request.method == 'POST':
+#             form = WantoitemForm(request.POST,instance=item)
+#             if form.is_valid():
+#                 form.save()
+#                 edit_item = get_object_or_404(Wantoitem,slug=slug)
+#                 Main.objects.filter(wantoitem=item).delete()
+#                 Sub.objects.filter(wantoitem=item).delete()
+#                 in_keyword,out_keyword = edit_item.scraping()
+#                 for main_url,main_list in in_keyword.items():
+#                     Main.objects.create(wantoitem=edit_item,main_url=main_url,main_title=main_list[0],main_ogp_img=main_list[1])
+#                 for sub_url,sub_list in out_keyword.items():
+#                     Sub.objects.create(wantoitem=edit_item,sub_url=sub_url,sub_title=sub_list[0],sub_ogp_img=sub_list[1])
+#             return redirect('ca_camera:detail', slug=slug)
 
-        else:
-            form = WantoitemForm(instance=item)
-            return render(request, 'ca_camera/form.html',{'form':form})
+#         else:
+#             form = WantoitemForm(instance=item)
+#             return render(request, 'ca_camera/form.html',{'form':form})
 
 def exclusion(request,slug):
     if not request.user.is_superuser:
