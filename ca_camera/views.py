@@ -12,8 +12,8 @@ from django.core.mail import BadHeaderError, EmailMessage
 from . import def_chrome 
 from urllib.parse import urlparse
 
-from celery.result import AsyncResult
-from config.tasks import form_celery, reload_celery, add
+# from celery.result import AsyncResult
+# from config.tasks import form_celery, reload_celery, add
 
 def index(request):
     items = Wantoitem.objects.all().order_by('maker_name')
