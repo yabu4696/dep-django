@@ -26,6 +26,6 @@ cd pattern
 ls -l
 cd /workspace
 
-gunicorn config.wsgi --bind=0.0.0.0:8000 -D
+gunicorn config.wsgi --bind=0.0.0.0:8800 -D
 celery -A config worker --pool=solo -B -l info
 exec "$@"
