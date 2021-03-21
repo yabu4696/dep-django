@@ -218,10 +218,6 @@ main::-webkit-scrollbar {
 
 }
 
-
-
-
-
 @media (min-width: 600px) {
     body {
         max-width: 1024px;

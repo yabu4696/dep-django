@@ -1,53 +1,198 @@
-/* (max-width: 480px)  */
-.item_title{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 39px;
-    column-gap: 15px;
-    font-size: 21px;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 0px;
+.main_pic { 
+    position: relative;
 }
 
-.item_title > .title_card{
-    border:  solid 2px #989898;
+.main_pic > img {
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
 }
-.item_card{
+
+.main_pic > .main_title{
+    margin: 0;
+    position: absolute;
+    right: 3%;
+    top: 20%;
+    color: black;
+    font-weight: 700;
+    font-size: 10vw;
+}
+
+.main_pic > .in_title{
+    margin: 0;
+    position: absolute;
+    right: 4%;
+    top: 38%;
+    color: black;
+    font-size: 3.6vw;
+}
+
+.main_pic > .sub_title{
+    margin: 0;
+    position: absolute;
+    right: 0%;
+    bottom: 6%;
+    color: white;
+    font-size: 4.7vw;
+    font-weight: 700;
+    line-height: 8vw;
+}
+
+.navi_grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 75px;
-    column-gap: 12px;
-    row-gap: 12px;
-    font-size: 17px;
-    padding: 12px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 155px;
+    padding-bottom: 0px;
+    row-gap: 5px;
+}
+
+.navi_grid > div {
+    position: relative;
+    border:  solid 1px #989898;
+}
+
+.sp { display: block !important; }
+.pc { display: none !important; }
+
+.navi_grid > div > img {
+    position: absolute;
+    width: auto;
+    height: 87%;
+    right: 20%;
+    top: 6%;
+}
+
+.navi_grid > div > .large {
+    margin: 0;
+    font-weight: 700;
+    text-decoration:underline;
+    position: absolute;
+    left: 12%;
+    top: 8%;
+    font-size: 3.8vw;
+}
+
+.navi_grid > div > .normal{
+    margin: 0;
+    position: absolute;
+    left: 12%;
+    top: 34%;
+    font-size: 80%;
+}
+
+.navi_grid > div > .small {
+    margin: 0;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    font-size: 75%;
+}
+.navi_grid> div > p > a{
+    color: rgb(76, 166, 207);
+}
+
+@media (max-width:340px){
+    .navi_grid > div > img {
+        position: absolute;
+        right: 10%;
+        top: 6%;
+    }
 }
 
 @media (min-width: 600px) {
-    .item_title{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 70px;
-        column-gap: 15px;
-        font-size: 41px;
-        text-align: center;
-        padding-top:15px ;
-        padding-bottom: 0px;
+    .main_pic { 
+        position: relative;
     }
     
-    .item_title > .title_card{
-        border:  solid 3px #989898;
+    .main_pic > img {
+        width: 100%;
+        height: 100%;
+        padding-top: 15px;
     }
-    .item_card{
+    
+    .main_pic > .main_title{
+        margin: 0;
+        position: absolute;
+        right: 3%;
+        top: 20%;
+        color: black;
+        font-weight: 700;
+        font-size: min(10vw,102px);
+    }
+    
+    .main_pic > .in_title{
+        margin: 0;
+        position: absolute;
+        right: 4%;
+        top: 38%;
+        color: black;
+        font-size: min(3.6vw,36px);
+    }
+    
+    .main_pic > .sub_title{
+        margin: 0;
+        position: absolute;
+        right: 0%;
+        bottom: 6%;
+        color: white;
+        font-size: min(4.7vw,48px);
+        font-weight: 700;
+        line-height: min(8vw,84px);
+    }
+
+    .navi_grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(233px,1fr));
-        grid-auto-rows: 105px;
-        column-gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: min(47vw,500px);
+        padding-top: 15px;
+        padding-bottom: 0px;
         row-gap: 15px;
-        font-size: 24px;
-        padding: 15px;
+        column-gap: 15px;
+    }
+    
+    .navi_grid > div {
+        position: relative;
+        border:  solid 1px #989898;
+    }
+    
+    .sp { display: none !important; }
+    .pc { display: block !important; }
+    
+    .navi_grid > div > img {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        right: auto;
+        top: auto;
+        bottom: 5%;
+    }
+    
+    .navi_grid > div > .large {
+        margin: 0;
+        font-weight: 700;
+        text-decoration:underline;
+        position: absolute;
+        left: 6%;
+        top: 0%;
+        font-size: min(3.3vw,34px);
+}
+    
+    .navi_grid > div > .normal{
+        margin: 0;
+        position: absolute;
+        left: 21%;
+        top: 12%;
+        font-size: min(3vw,30px);
+    }
+    
+    .navi_grid > div > .small {
+        margin: 0;
+        position: absolute;
+        left: 13%;
+        top: 22%;
+        font-size: min(2.5vw,25.6px);
+    }
+    .navi_grid> div > p > a{
+        color: rgb(76, 166, 207);
     }
 }
-
-
- 

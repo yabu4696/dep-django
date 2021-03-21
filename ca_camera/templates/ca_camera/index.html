@@ -5,20 +5,35 @@
 {% endblock %}
 {% block content %}
 <main>
-    {% if items %}
-    {% for maker in maker_list %}
-    <div class="item_title">
-        <div class="title_card"><a href="{% url 'ca_camera:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
-        <div class="item_card">
-            {% for item in items %}
-            {% if item.maker_name == maker %}
-            <div class="item"><a href="{% url 'ca_camera:detail' item.slug %}">{{ item.item_name }}</a></div>
-            {% endif %}
-            {% endfor %}
+    <div class="main_pic">
+        <img src="{% static 'ca_camera/img/main_pic.jpg' %}">
+        <p class="main_title">カメラ</p>
+        <p class="in_title">（本体・レンズ）</p>
+        <p class="sub_title">みんなのレビューから<br>あなたに最適なアイテムを</p>
+    </div>
+    <div class="navi_grid">
+        <div>
+            <p class="large">操作は簡単！</p>
+            <p class="normal">メーカーをクリック</p>
+            <p class="small">（<a href="{% url 'ca_camera:maker_index' %}">こちら</a>からも移動できます）</p>
+            <img class="sp" src="{% static 'ca_camera/img/sp_1.png' %}">
+            <img class="pc" src="{% static 'ca_camera/img/pc_1.png' %}">
+        </div>
+        <div>
+            <p class="normal">お好きなメーカーを<br>クリック</p>
+            <img class="sp" src="{% static 'ca_camera/img/sp_2.png' %}">
+            <img class="pc" src="{% static 'ca_camera/img/pc_2.png' %}">
+        </div>
+        <div>
+            <p class="normal">気になるアイテムを<br>クリック</p>
+            <img class="sp" src="{% static 'ca_camera/img/sp_3.png' %}">
+            <img class="pc" src="{% static 'ca_camera/img/pc_3.png' %}">
+        </div>
+        <div>
+            <p class="normal">みんなの商品レビュー<br>を一覧表示</p>
+            <img class="sp" src="{% static 'ca_camera/img/sp_4.png' %}">
+            <img class="pc" src="{% static 'ca_camera/img/pc_4.png' %}">
         </div>
     </div>
-    {% endfor %}
-    {% endif %}
 </main>
 {% endblock %}
-
