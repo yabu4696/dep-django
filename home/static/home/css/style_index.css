@@ -37,10 +37,11 @@
 .main_pic > .sub_title{
     margin: 0;
     position: absolute;
-    right: 22.7%;
+    right: 17.3%;
     top: 29%;
     font-size: 5.2vw;
     line-height: 8vw;
+    text-align: center;
 }
 
 .intro_grid {
@@ -190,7 +191,7 @@
     .main_pic > .sub_title{
         margin: 0;
         position: absolute;
-        left: 12.7%;
+        left: -22.3%;
         top: 46%;
         font-size: min(2.9vw,30px);
         line-height: min(5vw,56px);
