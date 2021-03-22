@@ -35,7 +35,7 @@
         <div class="container">
             <div class="logo_header"><a href="{% url 'ca_camera:index' %}">WaNTo</a></div>
             <div class="maker_header"><a href="{% url 'ca_camera:maker_index' %}">メーカー</a></div>
-            <form class="form_header" action="{% url 'ca_camera:index' %}" method="GET">
+            <form class="form_header" action="{% url 'ca_camera:search_result' %}" method="GET">
                     <input name="query" value="{{ request.GET.query }}" type="text" id="sbox" placeholder="検索"/>
                     <button type="submit" id="sbtn"><i class="fas fa-search"></i></button>
             </form>
