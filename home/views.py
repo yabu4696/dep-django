@@ -22,6 +22,9 @@ def category(request):
         'categories':categories,
     })
 
+def preturn(request):
+    return render(request, 'home/preturn.html')
+
 def contact(request):
   form = ContactForm(request.POST or None)
   if form.is_valid():

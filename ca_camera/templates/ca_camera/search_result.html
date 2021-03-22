@@ -6,18 +6,20 @@
 {% block content %}
 <main>
     {% if items %}
+    {% for maker in maker_list %}
     <div class="item_title">
         <div class="title_card"><a href="{% url 'ca_camera:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
         <div class="item_card">
             {% for item in items %}
+            {% if item.maker_name == maker %}
             <div class="item"><a href="{% url 'ca_camera:detail' item.slug %}">{{ item.item_name }}</a></div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
+    {% endfor %}
     {% else %}
-    <div class="item_title">
-        <div class="title_card"><a href="{% url 'ca_camera:maker_detail' maker.slug %}">{{ maker.name }}</a></div>
-        <h3>準備中</h3>
+    <h1>検索結果なし</h1>
     {% endif %}
 </main>
 {% endblock %}

@@ -5,7 +5,38 @@
 {% endblock %}
 {% block content %}
 <main>
-    <h1>紹介ページ</h1>
+    <div class="main_pic">
+        <img src="{% static 'home/img/main_sp_pic.jpg' %}" class="sp">
+        <img src="{% static 'home/img/main_pc_pic.jpg' %}" class="pc">
+        <p class="main_title">WaNTo</p>
+        <p class="in_title"><span class="under_line">シンプル</span>かつ<span class="under_line">ベスト</span></p>
+        <p class="sub_title">みんなのレビューから<br>あなたに最適な選択を</p>
+    </div>
+    <div class="intro_grid">
+        <div>
+        <div class="line_1"></div>
+        <p class="large_1"><span class="under_line">欲しいものを調べるとき、<br>
+            このようなお悩みはありませんか？</span></p>
+        <p class="normal_1">・実際に使っている人の感想を知りたい。<br>
+            ・ショッピングサイトばかり表示してしまう。<br>
+            ・ブログや商品紹介をしているページだけ見たい。
+        </p>
+        <div class="line_2"></div>
+        <p class="arrow">⬇</p>
+        <div class="line_3"></div>
+        <p class="large_2"><span class="under_line">このサイトでは、</span></p>
+        <p class="normal_2">①論理式を用いた検索（詳しくは<a href="{%  url 'home:preturn' %}">こちら</a>）<br>
+            ②特定のショッピングサイトのurlをフィルター<br>
+            ③特定のキーワード（通販や中古など）を含むタイトルのurlをフィルター
+        </p>
+        <img src="{% static 'home/img/sub_sp_pic.png' %}" class="sp">
+        <img src="{% static 'home/img/sub_pc_pic.png' %}" class="pc">
+        <div class="line_4"></div>
+        <p class="large_3"><span class="under_line">本当に知りたい情報だけを取得！</span></p>
+        <p class="large_4">カテゴリ一覧は<a href="{%  url 'home:category' %}">こちら</a>から</p>
+        <p class="normal_3"> ＊カテゴリは随時更新中<br> ＊リクエストがあれば<a href="{%  url 'home:contact' %}">こちら</a>から</p>
+        </div>
+    </div>
 </main>
 {% endblock %}
-
+ 

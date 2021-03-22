@@ -13,21 +13,11 @@ from . import def_chrome
 from urllib.parse import urlparse
 
 def index(request):
-    items = Wantoitem.objects.all().order_by('maker_name')
-    maker_list = Item_maker.objects.all()
-    query = request.GET.get('query')
-    if query:
-        items = items.filter(
-        Q(item_name__icontains=query)|
-        Q(maker_name__name__icontains=query)
-        ).distinct()
-        maker_lists = items.values_list('maker_name__name', flat=True)
-        maker_list = maker_list.filter(name__in=maker_lists)
-    return render(request, 'ca_camera/index.html', {
-         'items':items,
-         'maker_list':maker_list
-        })
+    return render(request, 'ca_camera/index.html')
     
+def preturn(request):
+    return render(request, 'ca_camera/preturn.html')
+
 def detail(request, slug):
     item = get_object_or_404(Wantoitem, slug=slug)
     main_lists = Main.objects.filter(wantoitem=item)
@@ -50,6 +40,22 @@ def maker_detail(request, slug):
     return render(request, 'ca_camera/maker_detail.html', {
         'items':items,
         'maker':maker,
+        })
+
+def search_result(request):
+    items = Wantoitem.objects.all().order_by('maker_name')
+    maker_list = Item_maker.objects.all()
+    query = request.GET.get('query')
+    if query:
+        items = items.filter(
+        Q(item_name__icontains=query)|
+        Q(maker_name__name__icontains=query)
+        ).distinct()
+        maker_lists = items.values_list('maker_name__name', flat=True)
+        maker_list = maker_list.filter(name__in=maker_lists)
+    return render(request, 'ca_camera/search_result.html', {
+         'items':items,
+         'maker_list':maker_list
         })
 
 def delete(request): 
