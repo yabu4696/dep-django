@@ -2,6 +2,10 @@
 {% load static %}
 {% block head %}
 <link rel='stylesheet' href="{% static 'ca_camera/css/style_list.css' %}">
+<title>{{ maker.name }} みんなのレビュー・評価を一覧表示 - WaNTo(ワント)</title>
+{% autoescape off %}
+{{ maker.meta_des }}
+{% endautoescape %}
 {% endblock %}
 {% block content %}
 <main>
