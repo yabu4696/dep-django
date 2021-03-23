@@ -21,7 +21,7 @@
 .main_pic > .sub_title{
     margin: 0;
     position: absolute;
-    right: 0%;
+    right: 2%;
     bottom: 6%;
     color: white;
     font-size: 4.7vw;
@@ -123,7 +123,7 @@
     .main_pic > .sub_title{
         margin: 0;
         position: absolute;
-        right: 0%;
+        right: 2%;
         bottom: 6%;
         color: white;
         font-size: min(4.7vw,48px);
