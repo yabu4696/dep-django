@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Item_maker, Tag, Wantoitem
 
 class WantoitemAdmin(admin.ModelAdmin):
-    fields = ('item_name', 'maker_name', 'tag', 'created_at', 'updated_at', 'slug')
+    fields = ('item_name', 'maker_name', 'tag', 'created_at', 'updated_at', 'slug', 'meta_des')
     readonly_fields = ('created_at', 'updated_at')
 
 admin.site.register(Item_maker)
