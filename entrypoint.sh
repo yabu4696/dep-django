@@ -15,7 +15,6 @@ fi
 
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 manage.py dbshell
 # DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME \
 # DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
 # DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
@@ -26,5 +25,5 @@ cd pattern
 ls -l
 cd /workspace
 
-gunicorn config.wsgi --bind=0.0.0.0:8000 
+gunicorn config.wsgi --bind=0.0.0.0:8000 --capture-output
 exec "$@"
