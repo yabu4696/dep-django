@@ -5,7 +5,7 @@ from . import def_chrome
 class Item_maker(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=False, unique=True)
-    meta_des = models.TextField(blank=True,null=True,max_length=255)
+    meta_des = models.CharField(blank=True,null=True,max_length=255)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class Wantoitem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(null=False, unique=True)
-    # meta_des = models.CharField(blank=True,null=True,max_length=255)
+    meta_des = models.CharField(blank=True,null=True,max_length=255)
             
     def __str__(self):
         return self.item_name
