@@ -25,5 +25,5 @@ cd pattern
 ls -l
 cd /workspace
 
-gunicorn config.wsgi --bind=0.0.0.0:8000 --capture-output
+gunicorn config.wsgi --bind=0.0.0.0:8000 
 exec "$@"
