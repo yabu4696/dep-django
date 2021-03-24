@@ -1,11 +1,17 @@
 from django.db import models
+from adminsortable.models import SortableMixin
+from adminsortable.fields import SortableForeignKey
 
 from . import def_chrome 
 
-class Item_maker(models.Model):
+class Item_maker(SortableMixin):
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=False, unique=True)
     meta_des = models.CharField(max_length=255,default='<meta name="description" content="カメラのレビューや評価サイトだけを表示したいというお悩みはありませんか？本サイトでは、カメラのレビューや評価サイトサイトだけを一覧表示！あなたに最適なアイテムを見つけてください。">')
+    the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    class Meta:
+        ordering = ["the_order"]
 
     def __str__(self):
         return self.name
@@ -16,14 +22,18 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
     
-class Wantoitem(models.Model):
+class Wantoitem(SortableMixin):
     item_name = models.CharField(blank=True,null=True,max_length=255)
-    maker_name = models.ForeignKey(Item_maker,on_delete=models.PROTECT)
+    maker_name = SortableForeignKey(Item_maker,on_delete=models.PROTECT)
     tag = models.ManyToManyField(Tag, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(null=False, unique=True)
     meta_des = models.CharField(max_length=255,default='<meta name="description" content="カメラのレビューや評価サイトだけを表示したいというお悩みはありませんか？本サイトでは、カメラのレビューや評価サイトサイトだけを一覧表示！あなたに最適なアイテムを見つけてください。">')
+    the_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    class Meta:
+        ordering = ["the_order"]
             
     def __str__(self):
         return self.item_name

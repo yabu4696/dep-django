@@ -19,6 +19,7 @@ boto3 = "==1.17.22"
 pycurl = "==7.43.0.6"
 kombu = "==5.0.2"
 django-hosts = "==4.0"
+django-admin-sortable = "==2.2.3"
 [dev-packages]
 
 [requires]
