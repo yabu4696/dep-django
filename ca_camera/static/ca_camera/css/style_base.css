@@ -135,7 +135,7 @@ main::-webkit-scrollbar {
 
 .title_card>a{
     position: relative;
-    display: inline-block;
+    display: block;
     padding: 0.1em 0.3em;
     text-decoration: none;
 }
