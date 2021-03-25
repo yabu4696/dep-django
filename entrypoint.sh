@@ -19,11 +19,11 @@ python3 manage.py showmigrations
 # python3 manage.py showmigrations
 # python3 manage.py migrate --fake
 # python3 manage.py showmigrations
-DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME \
-DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
-DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
-python3 manage.py createsuperuser --noinput
-cd ca_camera
+# DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME \
+# DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD \
+# DJANGO_SUPERUSER_EMAIL=$DJANGO_SUPERUSER_EMAIL \
+# python3 manage.py createsuperuser --noinput
+cd ca_lens
 ls -l
 cd pattern
 ls -l
