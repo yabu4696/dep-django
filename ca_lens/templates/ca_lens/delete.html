@@ -1,0 +1,18 @@
+{% extends 'ca_lens/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'ca_lens/css/style_other.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+
+    <h3>削除</h3>
+    <form action="{% url 'ca_lens:delete' %}" method="POST"　class="new_item">
+        {% for item in items %}
+        <p><input type="checkbox" name="delete" value="{{ item.pk }}"> {{ item.item_name }} </p>
+        {% endfor %}
+        {% csrf_token %}
+        <button type="submit">削除</button>
+    </form>
+</main>
+{% endblock %}

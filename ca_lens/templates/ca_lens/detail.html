@@ -1,0 +1,40 @@
+{% extends 'ca_lens/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'ca_lens/css/style_detail.css' %}">
+<title>{{ item.item_name }} みんなのレビュー・評価を一覧表示 - WaNTo(ワント)</title>
+{% autoescape off %}
+{{ item.meta_des }}
+{% endautoescape %}
+{% endblock %}
+{% block content %}
+<main>
+    <div class="item_title">
+        <div class="title_card"><a
+                href="{% url 'ca_lens:maker_detail' item.maker_name.slug %}">{{ item.maker_name.name }}</a></div>
+        <div class="title_card"><a>{{ item.item_name }}</a></div>
+        {% if user.is_superuser %}
+        <div class="title_card">
+            <form action="{% url 'ca_lens:reload_one' item.slug %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="reload" value={{ item.pk }}>reload</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    <div class="item_article_card">
+        {% for main_list in main_lists %}
+        <a href="{{ main_list.main_url }}" target="_blank">
+            <div>{{ main_list.main_title }}</div>
+            <img src="{{ main_list.main_ogp_img }}">
+        </a>
+        {% endfor %}
+        {% for sub_list in sub_lists %}
+        <a href="{{ sub_list.sub_url }}" target="_blank">
+            <div>{{ sub_list.sub_title }}</div>
+            <img src="{{ sub_list.sub_ogp_img }}">
+        </a>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

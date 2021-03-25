@@ -1,0 +1,17 @@
+{% extends 'ca_lens/base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href="{% static 'ca_lens/css/style_contact.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+    <h1>お問い合わせ</h1>
+    <form action="{% url 'ca_lens:contact' %}" method="POST" class="contact">
+        {% csrf_token %}
+        <input name="name" type="text" class="feedback-input" required="" placeholder="Name">   
+        <input name="email" type="text" class="feedback-input" required="" placeholder="Email">
+        <textarea name="message" class="feedback-input" required="" placeholder="Comment"></textarea>
+        <input type="submit" value="SUBMIT">
+    </form>
+</main>
+{% endblock %}

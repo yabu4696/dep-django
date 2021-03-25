@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ca_camera.apps.Ca_cameraConfig',
+    'ca_lens.apps.Ca_lensConfig',
     'home.apps.HomeConfig',
     'django_celery_results',
     'django_hosts',
